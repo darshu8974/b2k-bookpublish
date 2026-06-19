@@ -1,0 +1,86 @@
+spring:
+  application:
+    name: publishflow-backend
+
+  # ─── DataSource ──────────────────────────────────────────
+  datasource:
+    url: jdbc:mysql://localhost:3306/publishflow_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 'darshu@sql567t'
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      pool-name: PublishFlowHikariPool
+
+  # ─── JPA ─────────────────────────────────────────────────
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+        default_batch_fetch_size: 20
+        jdbc:
+          time_zone: UTC
+
+  # ─── Flyway ──────────────────────────────────────────────
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+    validate-on-migrate: false
+
+
+  # ─── File Upload ─────────────────────────────────────────
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 55MB
+
+  # ─── Jackson ─────────────────────────────────────────────
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+    default-property-inclusion: non_null
+
+# ─── Server ──────────────────────────────────────────────────
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  error:
+    include-message: always
+    include-binding-errors: always
+
+# ─── JWT ─────────────────────────────────────────────────────
+app:
+  jwt:
+    secret: publishflow-secret-key-must-be-at-least-256-bits-long-for-hs256-algorithm
+    access-token-expiration-ms: 86400000       # 24 hours
+    refresh-token-expiration-ms: 604800000     # 7 days
+
+  storage:
+    strategy: local
+    local:
+      upload-dir: ./uploads
+
+  cors:
+    allowed-origins:
+      - http://localhost:3000
+      - http://localhost:5173
+
+# ─── Logging ─────────────────────────────────────────────────
+logging:
+  level:
+    com.publishflow: DEBUG
+    org.springframework.security: INFO
+    org.hibernate.SQL: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"

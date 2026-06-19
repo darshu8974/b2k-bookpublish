@@ -1,0 +1,19 @@
+package com.publishflow.domain.audit;
+
+public enum AuditAction {
+    PROJECT_CREATED,
+    PROJECT_UPDATED,
+    PROJECT_DELETED,
+    STAGE_ADVANCED,
+    STAGE_REJECTED,
+    STAGE_ASSIGNED,
+    FILE_UPLOADED,
+    FILE_DELETED,
+    COMMENT_ADDED,
+    COMMENT_DELETED,
+    USER_CREATED,
+    USER_UPDATED,
+    USER_DELETED,
+    USER_LOGIN,
+    USER_LOGOUT
+}
