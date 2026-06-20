@@ -26,7 +26,7 @@ public interface ProjectRepository extends JpaRepository<Project, String> {
         AND (:status IS NULL OR p.status = :status)
         AND (:priority IS NULL OR p.priority = :priority)
         AND (:currentStage IS NULL OR p.currentStage = :currentStage)
-        AND (:search IS NULL OR
+        AND (:search = '' OR
              LOWER(p.title) LIKE LOWER(CONCAT('%', :search, '%')) OR
              LOWER(p.projectCode) LIKE LOWER(CONCAT('%', :search, '%')))
         """)

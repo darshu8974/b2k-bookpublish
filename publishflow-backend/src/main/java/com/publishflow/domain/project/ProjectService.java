@@ -39,8 +39,9 @@ public class ProjectService {
         ProjectPriority priority = priorityStr != null ? ProjectPriority.valueOf(priorityStr.toUpperCase()) : null;
         WorkflowStageName stage = stageStr != null ? WorkflowStageName.valueOf(stageStr.toUpperCase()) : null;
 
+        String s = (search == null || search.isBlank()) ? "" : search.trim();
         Page<Project> result = projectRepository.findAllFiltered(
-            status, priority, stage, search,
+            status, priority, stage, s,
             PageRequest.of(page, size, Sort.by("createdAt").descending())
         );
 

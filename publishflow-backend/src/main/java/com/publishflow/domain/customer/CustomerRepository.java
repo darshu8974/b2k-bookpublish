@@ -16,7 +16,7 @@ public interface CustomerRepository extends JpaRepository<Customer, String> {
 
     @Query("""
         SELECT c FROM Customer c WHERE c.deletedAt IS NULL
-        AND (:search IS NULL OR LOWER(c.name) LIKE LOWER(CONCAT('%', :search, '%')))
+        AND (:search = '' OR LOWER(c.name) LIKE LOWER(CONCAT('%', :search, '%')))
         """)
     Page<Customer> findAllActive(@Param("search") String search, Pageable pageable);
 }

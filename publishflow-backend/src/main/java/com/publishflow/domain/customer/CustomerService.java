@@ -22,7 +22,8 @@ public class CustomerService {
     @Transactional(readOnly = true)
     public PagedResponse<CustomerResponse> getAll(String search, int page, int size) {
         var pageable = PageRequest.of(page, size, Sort.by("name").ascending());
-        return PagedResponse.from(customerRepository.findAllActive(search, pageable).map(CustomerResponse::from));
+        String s = (search == null || search.isBlank()) ? "" : search.trim();
+        return PagedResponse.from(customerRepository.findAllActive(s, pageable).map(CustomerResponse::from));
     }
 
     @Transactional(readOnly = true)

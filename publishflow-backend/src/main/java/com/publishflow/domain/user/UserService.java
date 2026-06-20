@@ -25,7 +25,8 @@ public class UserService {
     @Transactional(readOnly = true)
     public PagedResponse<UserResponse> getAll(String search, UserRole role, int page, int size) {
         var pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
-        var pageResult = userRepository.findAllFiltered(search, role, pageable);
+        String s = (search == null || search.isBlank()) ? "" : search.trim();
+        var pageResult = userRepository.findAllFiltered(s, role, pageable);
         return PagedResponse.from(pageResult.map(UserResponse::from));
     }
 
