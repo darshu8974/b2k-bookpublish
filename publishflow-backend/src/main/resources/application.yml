@@ -1,19 +1,19 @@
 spring:
   application:
-    name: publishflow-backend
+    name: protrack-backend
 
   # ─── DataSource ──────────────────────────────────────────
   datasource:
-    url: jdbc:mysql://localhost:3306/publishflow_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: 'darshu@sql567t'
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/protrack_db}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+    driver-class-name: org.postgresql.Driver
     hikari:
-      maximum-pool-size: 20
-      minimum-idle: 5
+      maximum-pool-size: 10
+      minimum-idle: 2
       idle-timeout: 300000
       connection-timeout: 20000
-      pool-name: PublishFlowHikariPool
+      pool-name: ProTrackHikariPool
 
   # ─── JPA ─────────────────────────────────────────────────
   jpa:
@@ -22,7 +22,7 @@ spring:
     show-sql: false
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
         default_batch_fetch_size: 20
         jdbc:
@@ -34,7 +34,6 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
     validate-on-migrate: false
-
 
   # ─── File Upload ─────────────────────────────────────────
   servlet:
@@ -52,7 +51,7 @@ spring:
 
 # ─── Server ──────────────────────────────────────────────────
 server:
-  port: 8080
+  port: ${PORT:8080}
   servlet:
     context-path: /
   error:
@@ -62,25 +61,25 @@ server:
 # ─── JWT ─────────────────────────────────────────────────────
 app:
   jwt:
-    secret: publishflow-secret-key-must-be-at-least-256-bits-long-for-hs256-algorithm
-    access-token-expiration-ms: 86400000       # 24 hours
-    refresh-token-expiration-ms: 604800000     # 7 days
+    secret: ${JWT_SECRET:protrack-secret-key-must-be-at-least-256-bits-long-for-hs256-algorithm}
+    access-token-expiration-ms: 86400000
+    refresh-token-expiration-ms: 604800000
 
   storage:
     strategy: local
     local:
-      upload-dir: ./uploads
+      upload-dir: ${UPLOAD_DIR:./uploads}
 
   cors:
     allowed-origins:
-      - http://localhost:3000
+      - ${CORS_ORIGIN:http://localhost:3000}
       - http://localhost:5173
 
 # ─── Logging ─────────────────────────────────────────────────
 logging:
   level:
-    com.publishflow: DEBUG
+    com.publishflow: INFO
     org.springframework.security: INFO
     org.hibernate.SQL: INFO
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"
