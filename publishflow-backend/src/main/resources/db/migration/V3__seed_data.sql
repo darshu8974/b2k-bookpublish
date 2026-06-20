@@ -1,5 +1,5 @@
 -- Seed users (if not already exists)
-INSERT IGNORE INTO users (id, full_name, email, password_hash, role, is_active)
+INSERT INTO users (id, full_name, email, password_hash, role, is_active)
 VALUES
 (
     'usr-admin-seed-0000-000000000001',
@@ -40,10 +40,11 @@ VALUES
     '$2a$12$8k.Ejv87rVyne/04i/km3.DtH6i/HOojM4vMKQao41Ap8treE4PXa',
     'PRODUCTION_TEAM',
     TRUE
-);
+)
+ON CONFLICT (id) DO NOTHING;
 
 -- Seed customers (if not already exists)
-INSERT IGNORE INTO customers (id, name, contact_email, contact_phone, created_by)
+INSERT INTO customers (id, name, contact_email, contact_phone, created_by)
 VALUES
 (
     'cust-001',
@@ -79,4 +80,5 @@ VALUES
     'info@cambridge.org',
     '+44 1223 358331',
     'usr-admin-seed-0000-000000000001'
-);
+)
+ON CONFLICT (id) DO NOTHING;
