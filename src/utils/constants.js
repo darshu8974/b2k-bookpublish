@@ -13,15 +13,21 @@ export const ROLE_LABELS = {
 }
 
 export const WORKFLOW_STAGES = [
-  { key: 'CUSTOMER_INPUT',   label: 'Customer Input',    order: 1, description: 'Receive and document client requirements and briefs' },
-  { key: 'SAMPLE_CREATION',  label: 'Sample Creation',   order: 2, description: 'Create initial sample based on customer brief' },
-  { key: 'SAMPLE_REVIEW',    label: 'Sample Review',     order: 3, description: 'Review sample and collect client feedback' },
-  { key: 'APPROVAL',         label: 'Approval',          order: 4, description: 'Client signs off on the approved sample' },
-  { key: 'TYPESETTING',      label: 'Typesetting',       order: 5, description: 'Full typesetting of the complete manuscript' },
-  { key: 'PAGINATION',       label: 'Pagination',        order: 6, description: 'Page layout, numbering and final formatting' },
-  { key: 'QC',               label: 'Quality Check',     order: 7, description: 'Thorough quality inspection before delivery' },
-  { key: 'FINAL_DELIVERY',   label: 'Final Delivery',    order: 8, description: 'Deliver final files to client' },
+  { key: 'MANUSCRIPT_INTAKE',  label: 'Manuscript Intake & Content Prep', order: 1, description: 'Standardize files, clean text, and lock down fully-edited content' },
+  { key: 'DESIGN_TEMPLATE',    label: 'Design Template & Geometry Setup', order: 2, description: 'Define trim size, margins, baseline grid, typography and master pages' },
+  { key: 'GLOBAL_STYLES',      label: 'Global Styles Definition',         order: 3, description: 'Define paragraph, character and object/table styles' },
+  { key: 'IMPORT_COMPOSITION', label: 'Import & Composition',             order: 4, description: 'Flow text, apply hierarchy and run the copy-fitting pass' },
+  { key: 'QUALITY_EXPORT',     label: 'Quality Assurance & Export',       order: 5, description: 'Visual proofing, preflight check and final export' },
 ]
+
+// Colours matching the client's phase diagram (blue → purple → orange → green → red)
+export const PHASE_COLORS = {
+  MANUSCRIPT_INTAKE:  { main: '#2D6CC0', bg: '#E7F0FB' },
+  DESIGN_TEMPLATE:    { main: '#8B3FA3', bg: '#F3E9F7' },
+  GLOBAL_STYLES:      { main: '#E07B1E', bg: '#FCEEDD' },
+  IMPORT_COMPOSITION: { main: '#2E9E4F', bg: '#E5F6EA' },
+  QUALITY_EXPORT:     { main: '#C13B2F', bg: '#FBE7E5' },
+}
 
 export const PROJECT_STATUS = {
   DRAFT: 'DRAFT',

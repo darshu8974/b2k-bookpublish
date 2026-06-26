@@ -19,22 +19,31 @@ VALUES
   ('c-elsevier',  'Elsevier',                'contact@elsevier.com', 'u-admin', NOW(), NOW()),
   ('c-cambridge', 'Cambridge University',    'contact@cup.com',      'u-admin', NOW(), NOW());
 
--- ── QC Checklist Items ───────────────────────────────────────────────────────
+-- ── Phase Checklist Items (grouped by workflow phase) ─────────────────────────
+-- Retire the old generic QC items so only the phase-aligned checklist shows
+UPDATE qc_checklist_items SET is_active = FALSE WHERE id LIKE 'qci-%';
+
 MERGE INTO qc_checklist_items (id, label, category, sort_order, is_active, created_at)
 KEY(id)
 VALUES
-  ('qci-001', 'All headings follow the correct hierarchy (H1 > H2 > H3)', 'Structure',  1,  TRUE, NOW()),
-  ('qci-002', 'Figure captions are present and numbered correctly',         'Figures',    2,  TRUE, NOW()),
-  ('qci-003', 'Table captions are present and numbered correctly',          'Tables',     3,  TRUE, NOW()),
-  ('qci-004', 'All cross-references are resolved (no missing refs)',        'References', 4,  TRUE, NOW()),
-  ('qci-005', 'Bibliography / references section is complete',              'References', 5,  TRUE, NOW()),
-  ('qci-006', 'Running headers and footers are correct',                    'Layout',     6,  TRUE, NOW()),
-  ('qci-007', 'Page numbers are sequential and correct',                    'Layout',     7,  TRUE, NOW()),
-  ('qci-008', 'Fonts are consistent throughout the document',               'Typography', 8,  TRUE, NOW()),
-  ('qci-009', 'Spacing and margins match the template',                     'Layout',     9,  TRUE, NOW()),
-  ('qci-010', 'Equations are formatted and numbered correctly',             'Content',    10, TRUE, NOW()),
-  ('qci-011', 'No orphaned or widowed lines',                               'Typography', 11, TRUE, NOW()),
-  ('qci-012', 'All images are high resolution (minimum 300 DPI)',           'Figures',    12, TRUE, NOW()),
-  ('qci-013', 'Copyright permissions obtained for all third-party figures', 'Legal',      13, TRUE, NOW()),
-  ('qci-014', 'Author affiliations and contact details are correct',        'Metadata',   14, TRUE, NOW()),
-  ('qci-015', 'Abstract matches the final content',                         'Metadata',   15, TRUE, NOW());
+  -- Phase 1 — Manuscript Intake & Content Prep
+  ('chk-p1-01', 'Standardize files (Word to unified format)',          'Phase 1: Manuscript Intake & Content Prep', 101, TRUE, NOW()),
+  ('chk-p1-02', 'Text cleaning (quotes, dashes, remove double spaces)', 'Phase 1: Manuscript Intake & Content Prep', 102, TRUE, NOW()),
+  ('chk-p1-03', 'Editorial lockdown (text fully edited)',               'Phase 1: Manuscript Intake & Content Prep', 103, TRUE, NOW()),
+  -- Phase 2 — Design Template & Geometry Setup
+  ('chk-p2-01', 'Define trim size, margins and bleed',                  'Phase 2: Design Template & Geometry Setup', 201, TRUE, NOW()),
+  ('chk-p2-02', 'Set baseline grid (align text lines)',                 'Phase 2: Design Template & Geometry Setup', 202, TRUE, NOW()),
+  ('chk-p2-03', 'Typography selection (body & heading types)',          'Phase 2: Design Template & Geometry Setup', 203, TRUE, NOW()),
+  ('chk-p2-04', 'Master pages (headers, footers, page numbers)',        'Phase 2: Design Template & Geometry Setup', 204, TRUE, NOW()),
+  -- Phase 3 — Global Styles Definition
+  ('chk-p3-01', 'Paragraph styles (body text, headings 1-3)',           'Phase 3: Global Styles Definition',         301, TRUE, NOW()),
+  ('chk-p3-02', 'Character styles (italics, bold, links)',              'Phase 3: Global Styles Definition',         302, TRUE, NOW()),
+  ('chk-p3-03', 'Object/table styles (images, tables)',                 'Phase 3: Global Styles Definition',         303, TRUE, NOW()),
+  -- Phase 4 — Import & Composition
+  ('chk-p4-01', 'Flow text (map styles on import)',                     'Phase 4: Import & Composition',             401, TRUE, NOW()),
+  ('chk-p4-02', 'Apply hierarchy (headers, lists, breaks)',             'Phase 4: Import & Composition',             402, TRUE, NOW()),
+  ('chk-p4-03', 'Copy-fitting pass (widows, orphans, hyphenation)',     'Phase 4: Import & Composition',             403, TRUE, NOW()),
+  -- Phase 5 — Quality Assurance & Export
+  ('chk-p5-01', 'Visual proofing (page numbers, running heads, TOC)',   'Phase 5: Quality Assurance & Export',       501, TRUE, NOW()),
+  ('chk-p5-02', 'Preflight check (low-res images, missing fonts, overset text)', 'Phase 5: Quality Assurance & Export', 502, TRUE, NOW()),
+  ('chk-p5-03', 'Final export (Print PDF CMYK; Digital RGB PDF / ePub)','Phase 5: Quality Assurance & Export',       503, TRUE, NOW());

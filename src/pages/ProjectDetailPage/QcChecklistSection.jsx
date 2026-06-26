@@ -77,7 +77,7 @@ export default function QcChecklistSection({ projectId }) {
       {/* Header */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
         <Typography fontWeight={700} fontSize="0.95rem">
-          QC Checklist
+          Phase Checklist
           <Box component="span" sx={{ color: 'text.secondary', fontWeight: 400, ml: 1 }}>
             ({checklist.checkedItems}/{checklist.totalItems} complete)
           </Box>

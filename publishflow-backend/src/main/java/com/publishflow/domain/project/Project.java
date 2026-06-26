@@ -47,7 +47,7 @@ public class Project extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "current_stage", length = 30)
     @Builder.Default
-    private WorkflowStageName currentStage = WorkflowStageName.CUSTOMER_INPUT;
+    private WorkflowStageName currentStage = WorkflowStageName.MANUSCRIPT_INTAKE;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)

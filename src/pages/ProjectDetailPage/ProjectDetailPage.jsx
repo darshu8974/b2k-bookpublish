@@ -177,7 +177,7 @@ export default function ProjectDetailPage() {
           <Tabs value={activeTab} onChange={(_, v) => setActiveTab(v)} sx={{ px: 2 }}>
             <Tab label={`Comments (${comments.length})`} />
             <Tab label={`Files (${files.length})`} />
-            <Tab label="QC Checklist" />
+            <Tab label="Phase Checklist" />
             <Tab label="Approval" />
             <Tab label={`Activity (${activity.length})`} />
           </Tabs>

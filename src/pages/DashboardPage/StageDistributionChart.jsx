@@ -1,8 +1,6 @@
 import { Card, CardContent, CardHeader, Box, Typography } from '@mui/material'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts'
-import { WORKFLOW_STAGES } from '../../utils/constants'
-
-const COLORS = ['#4C9AFF','#57D9A3','#8777D9','#FFE380','#FF8F73','#B8ACF6','#79F2C0','#0052CC']
+import { WORKFLOW_STAGES, PHASE_COLORS } from '../../utils/constants'
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null
@@ -17,6 +15,7 @@ function CustomTooltip({ active, payload, label }) {
 export default function StageDistributionChart({ projects }) {
   const data = WORKFLOW_STAGES.map((s) => ({
     stage: s.label,
+    key: s.key,
     count: projects.filter((p) => p.currentStage === s.key).length,
   }))
 
@@ -46,8 +45,8 @@ export default function StageDistributionChart({ projects }) {
             <YAxis tick={{ fontSize: 11, fill: '#5E6C84' }} allowDecimals={false} />
             <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(9,30,66,0.04)' }} />
             <Bar dataKey="count" radius={[4, 4, 0, 0]}>
-              {data.map((_, idx) => (
-                <Cell key={idx} fill={COLORS[idx % COLORS.length]} />
+              {data.map((d, idx) => (
+                <Cell key={idx} fill={PHASE_COLORS[d.key]?.main || '#4C9AFF'} />
               ))}
             </Bar>
           </BarChart>

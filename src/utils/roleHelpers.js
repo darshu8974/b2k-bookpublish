@@ -23,17 +23,17 @@ export function canAssignStage(role) {
 export function canAdvanceStage(role, stageKey) {
   if (role === ROLES.ADMIN || role === ROLES.PROJECT_MANAGER) return true
   if (role === ROLES.PRODUCTION_TEAM) {
-    return ['CUSTOMER_INPUT', 'SAMPLE_CREATION', 'TYPESETTING', 'PAGINATION'].includes(stageKey)
+    return ['MANUSCRIPT_INTAKE', 'DESIGN_TEMPLATE', 'GLOBAL_STYLES', 'IMPORT_COMPOSITION'].includes(stageKey)
   }
   if (role === ROLES.QC_TEAM) {
-    return ['SAMPLE_REVIEW', 'APPROVAL', 'QC', 'FINAL_DELIVERY'].includes(stageKey)
+    return ['QUALITY_EXPORT'].includes(stageKey)
   }
   return false
 }
 
 export function canRejectStage(role, stageKey) {
   if (role === ROLES.ADMIN || role === ROLES.PROJECT_MANAGER) return true
-  if (role === ROLES.QC_TEAM && ['SAMPLE_REVIEW', 'QC'].includes(stageKey)) return true
+  if (role === ROLES.QC_TEAM && ['QUALITY_EXPORT'].includes(stageKey)) return true
   return false
 }
 

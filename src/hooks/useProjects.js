@@ -69,7 +69,7 @@ export default function useProjects(filters = {}) {
         projectCode: `PF-2024-${String(MOCK_PROJECTS.length + 1).padStart(4, '0')}`,
         ...data,
         status: 'ACTIVE',
-        currentStage: 'CUSTOMER_INPUT',
+        currentStage: 'MANUSCRIPT_INTAKE',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
       }

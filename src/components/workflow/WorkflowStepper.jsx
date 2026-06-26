@@ -1,6 +1,6 @@
 import { Box, Typography, Tooltip } from '@mui/material'
 import StageStatusIcon from './StageStatusIcon'
-import { WORKFLOW_STAGES } from '../../utils/constants'
+import { WORKFLOW_STAGES, PHASE_COLORS } from '../../utils/constants'
 import { stageStatusColors } from '../../utils/statusColors'
 
 const STATUS_LABELS = {
@@ -19,6 +19,7 @@ export default function WorkflowStepper({ stages = [], onStageClick, activeStage
         const status = stage?.status || 'PENDING'
         const isActive = activeStage === wf.key
         const colors = stageStatusColors[status] || stageStatusColors.PENDING
+        const phase = PHASE_COLORS[wf.key] || { main: '#0052CC', bg: '#F0F4FF' }
         const isCompleted = status === 'COMPLETED' || status === 'APPROVED'
 
         return (
@@ -31,19 +32,23 @@ export default function WorkflowStepper({ stages = [], onStageClick, activeStage
                   display: 'flex', flexDirection: 'column', alignItems: 'center',
                   gap: 0.75, cursor: onStageClick ? 'pointer' : 'default',
                   px: 0.5, py: 1, borderRadius: 2, flex: 1,
-                  bgcolor: isActive ? '#F0F4FF' : 'transparent',
-                  border: isActive ? '1.5px solid #0052CC' : '1.5px solid transparent',
+                  borderTop: `3px solid ${phase.main}`,
+                  bgcolor: isActive ? phase.bg : 'transparent',
+                  border: isActive ? `1.5px solid ${phase.main}` : '1.5px solid transparent',
+                  borderTopWidth: '3px',
+                  borderTopColor: phase.main,
                   transition: 'all 0.15s',
-                  '&:hover': onStageClick ? { bgcolor: '#F4F5F7' } : {},
+                  '&:hover': onStageClick ? { bgcolor: phase.bg } : {},
                   minWidth: 72,
                 }}
               >
                 <StageStatusIcon status={status} size={26} />
                 <Typography
                   sx={{
-                    fontSize: '0.68rem', fontWeight: isActive ? 700 : 500,
-                    color: isActive ? '#0052CC' : isCompleted ? '#5E6C84' : '#172B4D',
-                    textAlign: 'center', lineHeight: 1.3, whiteSpace: 'nowrap',
+                    fontSize: '0.66rem', fontWeight: isActive ? 700 : 500,
+                    color: phase.main,
+                    textAlign: 'center', lineHeight: 1.25, whiteSpace: 'normal',
+                    maxWidth: 92, minHeight: 30,
                   }}
                 >
                   {wf.label}

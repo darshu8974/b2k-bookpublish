@@ -44,7 +44,7 @@ CREATE TABLE projects (
     customer_id        VARCHAR(36)  NULL,
     project_manager_id VARCHAR(36)  NULL,
     created_by         VARCHAR(36)  NULL,
-    current_stage      VARCHAR(30)  NOT NULL DEFAULT 'CUSTOMER_INPUT',
+    current_stage      VARCHAR(30)  NOT NULL DEFAULT 'MANUSCRIPT_INTAKE',
     status             VARCHAR(20)  NOT NULL DEFAULT 'ACTIVE',
     priority           VARCHAR(10)  NOT NULL DEFAULT 'MEDIUM',
     due_date           DATE         NULL,
