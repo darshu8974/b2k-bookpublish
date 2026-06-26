@@ -85,8 +85,8 @@ export default function FilesSection({ files, onUpload, onDelete }) {
           </TableHead>
           <TableBody>
             {files.map((file) => {
-              const catColors = CATEGORY_COLORS[file.uploadCategory] || CATEGORY_COLORS.OTHER
-              const catLabel = UPLOAD_CATEGORIES.find((c) => c.value === file.uploadCategory)?.label || file.uploadCategory
+              const catColors = CATEGORY_COLORS[file.category] || CATEGORY_COLORS.OTHER
+              const catLabel = UPLOAD_CATEGORIES.find((c) => c.value === file.category)?.label || file.category
               return (
                 <TableRow key={file.id}>
                   <TableCell>
@@ -108,10 +108,10 @@ export default function FilesSection({ files, onUpload, onDelete }) {
                     />
                   </TableCell>
                   <TableCell>
-                    <Typography fontSize="0.8rem" color="text.secondary">{formatBytes(file.fileSizeBytes)}</Typography>
+                    <Typography fontSize="0.8rem" color="text.secondary">{formatBytes(file.fileSize)}</Typography>
                   </TableCell>
                   <TableCell>
-                    {file.uploadedBy && <UserAvatarWithName user={file.uploadedBy} size={24} />}
+                    {file.uploadedByName && <UserAvatarWithName user={{ id: file.uploadedById, fullName: file.uploadedByName }} size={24} />}
                   </TableCell>
                   <TableCell>
                     <Typography fontSize="0.78rem" color="text.secondary">{formatDateTime(file.createdAt)}</Typography>

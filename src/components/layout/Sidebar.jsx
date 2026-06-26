@@ -10,7 +10,10 @@ import AddCircleIcon from '@mui/icons-material/AddCircleOutline'
 import PeopleIcon from '@mui/icons-material/PeopleOutlined'
 import BarChartIcon from '@mui/icons-material/BarChartOutlined'
 import SecurityIcon from '@mui/icons-material/SecurityOutlined'
-import logo from '../../assets/book.jpg'
+import DescriptionIcon from '@mui/icons-material/DescriptionOutlined'
+import InboxIcon from '@mui/icons-material/MoveToInboxOutlined'
+import FolderSharedIcon from '@mui/icons-material/FolderSharedOutlined'
+import logo from '../../assets/b2k-logo.png'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import useAuth from '../../auth/useAuth'
@@ -25,6 +28,9 @@ const NAV_SECTIONS = (role) => [
       { label: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
       { label: 'Projects', icon: <FolderIcon />, path: '/projects' },
       { label: 'New Project', icon: <AddCircleIcon />, path: '/projects/new', hide: !['ADMIN','PROJECT_MANAGER'].includes(role) },
+      { label: 'Templates', icon: <DescriptionIcon />, path: '/templates' },
+      { label: 'Incoming', icon: <InboxIcon />, path: '/incoming' },
+      { label: 'Input', icon: <FolderSharedIcon />, path: '/input' },
     ],
   },
   {

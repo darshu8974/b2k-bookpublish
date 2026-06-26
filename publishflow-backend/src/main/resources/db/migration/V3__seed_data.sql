@@ -5,7 +5,7 @@ VALUES
     'usr-admin-seed-0000-000000000001',
     'System Admin',
     'admin@publishflow.com',
-    '$2a$12$8k.Ejv87rVyne/04i/km3.DtH6i/HOojM4vMKQao41Ap8treE4PXa',
+    '$2a$12$kHwlJK7PcVzN1NXBd7bpU.1fUv7VAXrxRwCy0UfNO9LsU6WEnQyuC',
     'ADMIN',
     TRUE
 ),
@@ -13,7 +13,7 @@ VALUES
     'usr-pm-seed-00000000000002',
     'Priya Sharma',
     'pm@publishflow.com',
-    '$2a$12$8k.Ejv87rVyne/04i/km3.DtH6i/HOojM4vMKQao41Ap8treE4PXa',
+    '$2a$12$kHwlJK7PcVzN1NXBd7bpU.1fUv7VAXrxRwCy0UfNO9LsU6WEnQyuC',
     'PROJECT_MANAGER',
     TRUE
 ),
@@ -21,7 +21,7 @@ VALUES
     'usr-prod-seed-0000000000003',
     'Ravi Kumar',
     'production@publishflow.com',
-    '$2a$12$8k.Ejv87rVyne/04i/km3.DtH6i/HOojM4vMKQao41Ap8treE4PXa',
+    '$2a$12$kHwlJK7PcVzN1NXBd7bpU.1fUv7VAXrxRwCy0UfNO9LsU6WEnQyuC',
     'PRODUCTION_TEAM',
     TRUE
 ),
@@ -29,7 +29,7 @@ VALUES
     'usr-qc-seed-00000000000004',
     'Sneha Patel',
     'qc@publishflow.com',
-    '$2a$12$8k.Ejv87rVyne/04i/km3.DtH6i/HOojM4vMKQao41Ap8treE4PXa',
+    '$2a$12$kHwlJK7PcVzN1NXBd7bpU.1fUv7VAXrxRwCy0UfNO9LsU6WEnQyuC',
     'QC_TEAM',
     TRUE
 ),
@@ -37,7 +37,7 @@ VALUES
     'usr-prod2-seed-000000000005',
     'Vikram Nair',
     'prod2@publishflow.com',
-    '$2a$12$8k.Ejv87rVyne/04i/km3.DtH6i/HOojM4vMKQao41Ap8treE4PXa',
+    '$2a$12$kHwlJK7PcVzN1NXBd7bpU.1fUv7VAXrxRwCy0UfNO9LsU6WEnQyuC',
     'PRODUCTION_TEAM',
     TRUE
 )

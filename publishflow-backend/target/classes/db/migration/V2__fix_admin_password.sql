@@ -1,4 +1,4 @@
--- Fix admin password hash (BCrypt 12 of 'password')
+-- Fix admin password hash (BCrypt 12 of 'Admin@1234')
 UPDATE users
-SET password_hash = '$2a$12$8k.Ejv87rVyne/04i/km3.DtH6i/HOojM4vMKQao41Ap8treE4PXa'
+SET password_hash = '$2a$12$kHwlJK7PcVzN1NXBd7bpU.1fUv7VAXrxRwCy0UfNO9LsU6WEnQyuC'
 WHERE email = 'admin@publishflow.com';

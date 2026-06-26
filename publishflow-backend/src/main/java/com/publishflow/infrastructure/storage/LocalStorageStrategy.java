@@ -35,6 +35,19 @@ public class LocalStorageStrategy implements StorageStrategy {
     }
 
     @Override
+    public String store(byte[] content, String filename) {
+        try {
+            Path uploadDir = Paths.get(storageProperties.getLocal().getUploadDir()).toAbsolutePath().normalize();
+            Files.createDirectories(uploadDir);
+            Path target = uploadDir.resolve(filename);
+            Files.write(target, content);
+            return target.toString();
+        } catch (IOException e) {
+            throw new BusinessRuleException("Failed to store file: " + e.getMessage());
+        }
+    }
+
+    @Override
     public byte[] retrieve(String storagePath) {
         try {
             return Files.readAllBytes(Paths.get(storagePath));

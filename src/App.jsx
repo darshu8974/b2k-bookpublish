@@ -13,6 +13,10 @@ import CreateProjectPage from './pages/CreateProjectPage/CreateProjectPage'
 import UsersPage from './pages/UsersPage/UsersPage'
 import ReportsPage from './pages/ReportsPage/ReportsPage'
 import AuditLogsPage from './pages/AuditLogsPage/AuditLogsPage'
+import TemplatesPage from './pages/TemplatesPage/TemplatesPage'
+import IncomingPage from './pages/IncomingPage/IncomingPage'
+import InputPage from './pages/InputPage/InputPage'
+import AuthorPortalPage from './pages/AuthorPortalPage/AuthorPortalPage'
 
 export default function App() {
   return (
@@ -27,6 +31,7 @@ export default function App() {
           <AuthProvider>
             <Routes>
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/author/review" element={<AuthorPortalPage />} />
               <Route
                 path="/"
                 element={
@@ -40,6 +45,9 @@ export default function App() {
                 <Route path="projects" element={<ProjectsPage />} />
                 <Route path="projects/new" element={<CreateProjectPage />} />
                 <Route path="projects/:id" element={<ProjectDetailPage />} />
+                <Route path="templates" element={<TemplatesPage />} />
+                <Route path="incoming" element={<IncomingPage />} />
+                <Route path="input" element={<InputPage />} />
                 <Route
                   path="users"
                   element={

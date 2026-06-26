@@ -23,8 +23,8 @@ const EVENT_CONFIG = {
 function TimelineItem({ event, isLast }) {
   const cfg = EVENT_CONFIG[event.type] || EVENT_CONFIG.PROJECT_UPDATED
   const Icon = cfg.icon
-  const actorBg = getAvatarColor(event.actor?.fullName || '')
-  const actorInitials = event.actor?.fullName?.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase() || '?'
+  const actorBg = getAvatarColor(event.actorName || '')
+  const actorInitials = event.actorName?.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase() || '?'
 
   return (
     <Box sx={{ display: 'flex', gap: 1.5, mb: isLast ? 0 : 0 }}>
@@ -51,7 +51,7 @@ function TimelineItem({ event, isLast }) {
               {actorInitials}
             </Avatar>
             <Typography fontSize="0.875rem" fontWeight={600} color="text.primary">
-              {event.actor?.fullName}
+              {event.actorName}
             </Typography>
             <Typography fontSize="0.875rem" color="text.secondary">
               {event.description}
@@ -67,37 +67,6 @@ function TimelineItem({ event, isLast }) {
           </Typography>
         </Box>
 
-        {/* Metadata preview */}
-        {event.metadata && Object.keys(event.metadata).length > 0 && (
-          <Box sx={{
-            mt: 0.5, p: 1, bgcolor: '#F4F5F7', borderRadius: 1.5,
-            border: '1px solid #EBECF0', display: 'inline-block',
-          }}>
-            {event.metadata.from && event.metadata.to && (
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
-                <Typography fontSize="0.78rem" sx={{
-                  bgcolor: '#EBECF0', px: 0.75, py: 0.25, borderRadius: 1,
-                  fontWeight: 600, color: '#5E6C84',
-                }}>
-                  {event.metadata.from?.replace(/_/g, ' ')}
-                </Typography>
-                <ArrowForwardIcon sx={{ fontSize: '0.7rem', color: '#97A0AF' }} />
-                <Typography fontSize="0.78rem" sx={{
-                  bgcolor: '#E3FCEF', px: 0.75, py: 0.25, borderRadius: 1,
-                  fontWeight: 600, color: '#006644',
-                }}>
-                  {event.metadata.to?.replace(/_/g, ' ')}
-                </Typography>
-              </Box>
-            )}
-            {event.metadata.filename && (
-              <Typography fontSize="0.78rem" color="text.secondary">{event.metadata.filename}</Typography>
-            )}
-            {event.metadata.assignee && (
-              <Typography fontSize="0.78rem" color="text.secondary">Assigned to: <strong>{event.metadata.assignee}</strong></Typography>
-            )}
-          </Box>
-        )}
       </Box>
     </Box>
   )

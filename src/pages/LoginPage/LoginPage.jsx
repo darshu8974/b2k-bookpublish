@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
 import LoginForm from './LoginForm'
-import logo from '../../assets/book.jpg'
+import logo from '../../assets/b2k-logo.png'
 
 export default function LoginPage() {
   return (

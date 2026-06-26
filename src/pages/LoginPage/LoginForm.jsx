@@ -10,10 +10,10 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import useAuth from '../../auth/useAuth'
 
 const DEMO_ACCOUNTS = [
-  { label: 'Admin', email: 'admin@publishflow.com', role: 'Full access' },
-  { label: 'Project Manager', email: 'pm@publishflow.com', role: 'Manage projects' },
-  { label: 'Production', email: 'production@publishflow.com', role: 'Stage work' },
-  { label: 'QC Team', email: 'qc@publishflow.com', role: 'Quality checks' },
+  { label: 'Admin', email: 'admin@protrack.com', role: 'Full access' },
+  { label: 'Project Manager', email: 'pm@protrack.com', role: 'Manage projects' },
+  { label: 'Production', email: 'production@protrack.com', role: 'Stage work' },
+  { label: 'QC Team', email: 'qc@protrack.com', role: 'Quality checks' },
 ]
 
 export default function LoginForm() {
@@ -43,7 +43,7 @@ export default function LoginForm() {
     }
   }
 
-  const fillDemo = (acc) => { setEmail(acc.email); setPassword('Admin@1234'); setError('') }
+  const fillDemo = (acc) => { setEmail(acc.email); setPassword('password'); setError('') }
 
   return (
     <Box sx={{ width: '100%', maxWidth: 390 }}>

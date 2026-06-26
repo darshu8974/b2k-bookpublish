@@ -11,6 +11,8 @@ import WorkflowTracker from './WorkflowTracker'
 import CommentsSection from './CommentsSection'
 import FilesSection from './FilesSection'
 import ActivityTimeline from './ActivityTimeline'
+import QcChecklistSection from './QcChecklistSection'
+import SendApprovalSection from './SendApprovalSection'
 import useProject from '../../hooks/useProject'
 import useAuth from '../../auth/useAuth'
 import { isAdminOrPM } from '../../utils/roleHelpers'
@@ -175,6 +177,8 @@ export default function ProjectDetailPage() {
           <Tabs value={activeTab} onChange={(_, v) => setActiveTab(v)} sx={{ px: 2 }}>
             <Tab label={`Comments (${comments.length})`} />
             <Tab label={`Files (${files.length})`} />
+            <Tab label="QC Checklist" />
+            <Tab label="Approval" />
             <Tab label={`Activity (${activity.length})`} />
           </Tabs>
         </Box>
@@ -194,6 +198,12 @@ export default function ProjectDetailPage() {
             />
           )}
           {activeTab === 2 && (
+            <QcChecklistSection projectId={id} />
+          )}
+          {activeTab === 3 && (
+            <SendApprovalSection projectId={id} canSend={isAdminOrPM(user?.role)} />
+          )}
+          {activeTab === 4 && (
             <ActivityTimeline activity={activity} />
           )}
         </CardContent>

@@ -16,9 +16,9 @@ function CommentItem({ comment, onDelete, currentUserId }) {
   const [menuAnchor, setMenuAnchor] = useState(null)
   const [editing, setEditing] = useState(false)
   const [editContent, setEditContent] = useState(comment.content)
-  const isOwn = comment.author?.id === currentUserId
-  const bg = getAvatarColor(comment.author?.fullName || '')
-  const initials = comment.author?.fullName?.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase() || '?'
+  const isOwn = comment.authorId === currentUserId
+  const bg = getAvatarColor(comment.authorName || '')
+  const initials = comment.authorName?.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase() || '?'
 
   return (
     <Box sx={{ display: 'flex', gap: 1.5, mb: 2.5 }}>
@@ -27,9 +27,9 @@ function CommentItem({ comment, onDelete, currentUserId }) {
       </Avatar>
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-          <Typography fontSize="0.875rem" fontWeight={600}>{comment.author?.fullName}</Typography>
+          <Typography fontSize="0.875rem" fontWeight={600}>{comment.authorName}</Typography>
           <Typography fontSize="0.72rem" color="text.disabled">{formatRelative(comment.createdAt)}</Typography>
-          {comment.isEdited && <Typography fontSize="0.68rem" color="text.disabled">(edited)</Typography>}
+          {comment.updatedAt !== comment.createdAt && <Typography fontSize="0.68rem" color="text.disabled">(edited)</Typography>}
         </Box>
 
         {editing ? (
